@@ -1,0 +1,74 @@
+#calculator {
+    width: 100%;
+    padding: 20px;
+}
+.head_tabs ul {
+    margin: 0;
+    display: flex;
+}
+.head_tabs ul li {
+    cursor: pointer;
+    color: #000;
+    font-weight: 400;
+    padding: 0;
+    margin: 0 5px;
+}
+.li_active {
+    color: gray;
+    border-bottom: 1px solid #000;
+}
+
+.tab_body_1 {
+    display: block;
+    margin: 20px 0;
+}
+.tab_body_null {
+    display: none;
+}
+.tab_body_1 button {
+    outline: none;
+    border: none;
+    padding: 10px 15px;
+    margin-top: 20px;
+    background-color: rgb(12, 18, 47);
+    color: #fff;
+    border-radius: 20px;
+}
+.tab_body_1 form {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(309px, 1fr));
+    grid-gap: 1rem;
+    gap: 15px;
+}
+.tab_body_1 form .tb_input label{
+    display: block;
+    color: #000;
+    font-size: 18px;
+}
+
+.tab_body_1 form .tb_input input {
+    width: 100%;
+   padding: 10px;
+    border-radius: 10px;
+    outline: none;
+    border: 1px solid gray;
+}
+.tb_result {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(309px, 1fr));
+    grid-gap: 1rem;
+    gap: 15px;
+    margin-top: 20px;
+}
+.tb_result_box {
+    width: 100%;
+    height: inherit;
+    padding: 6px;
+    border-radius: 20px;
+    background-color: #fff;
+    box-shadow: 0px 0.53px 5px rgba(0, 0, 0, 0.133);
+}
+.tb_result_box h1 {
+    float: right;
+    margin: 0;
+}
