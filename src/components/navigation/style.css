@@ -59,6 +59,38 @@ li {
     position: relative;
     padding-left: 1rem;
 }
+.drop_down_none {
+    display:none;
+}
+
+    .drop_down {
+            position: absolute;
+            top: 70px;
+            right: 0;
+            background-color: #ffffff;
+            padding: 10px;
+            border-radius: 5px;
+            min-width: 10%;
+            display: block;
+        }
+    
+        .drop_down ul {
+            margin: 0;
+            padding: 0;
+        }
+    
+        .drop_down ul li {
+            margin: 3px 30px;
+            padding: 0px;
+            display: block;
+        }
+    
+        .drop_down ul li:hover {
+            background-color: gray;
+            color: #ffffff;
+        }
+
+
 
 i {
     color: rgba(34, 34, 96, 0.6);

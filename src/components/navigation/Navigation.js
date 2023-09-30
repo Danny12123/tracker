@@ -4,20 +4,39 @@ import avatar from '../../images/avatar.jpeg';
 import { signout } from '../../utils/Icons';
 import { menuItems } from '../../utils/menuItems';
 import './style.css';
+import { Link } from 'react-router-dom'
+import { useSelector } from "react-redux";
+import { UserAction } from '../../redux/Action';
+import { useDispatch } from 'react-redux';
+
 
 function Navigation({active, setActive}) {
+    const user = useSelector(state => state.UserHolder)
+    console.log(user)
+    const [isOpen, setIsOpen] = useState(false);
+    const handleShow = () => setIsOpen(!isOpen);
+    const dispatch = useDispatch()
+    const handleOut = () => {
+        dispatch(UserAction())
+    }
   return (
       <div id='nav_holder'>
         <div className='user-con'>
             <img src={avatar} alt="" />
             <div className='text'>
-                <h2>confy</h2>
+                  <h2>{ user.user.username }</h2>
                 <p>your money</p>
             </div>
               <div className='bottom-nav'>
-                  <li>
-                      { signout } Sign Out
+                  <li onClick={handleShow}>
+                      { signout } Account
                   </li>
+                  <div className={isOpen ? "drop_down_none" :'drop_down'}>   
+                    <ul>
+                          <li><Link to='/login'style={{textDecoration: "none", color:"#000"}} >Sign In</Link></li>
+                        <li onClick={handleOut}>Sign Out</li>
+                    </ul>
+                  </div>
               </div>
         </div>
         <div className='menu-items'>
