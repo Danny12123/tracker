@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import axios from 'axios';
+// import { useSelector } from "react-redux";
 
 const BASE_URL = "http://localhost:8080/api/v1/"
 const GlobalContext = React.createContext()
@@ -10,18 +11,20 @@ export const GlobalProvider = ({children}) => {
     const [incomes, setIncomes] = useState([])
     const [expenses, setExpenses] = useState([])
     const [error, setError] = useState(null)
+    
+    // const user = useSelector(state => state.UserHolder)
 
 //calculate incomes
     const addIncome = async(income) =>{
         const response = await axios.post(`${BASE_URL}add-income`, income).catch((error) => {
-            setError(error.response.data.message)
+            setError(error)
         })
         getIncome()
     }
     const getIncome = async() =>{
-        const response = await axios.get(`${BASE_URL}get-income`)
-        setIncomes(response.data)
-        console.log(response.data);
+        // const response = await axios.get(`${BASE_URL}get-income/${user._id}`)
+        // setIncomes(response.data)
+        // console.log(response.data);
     }
     const deleteIncome = async(id) => {
         const res = await axios.delete(`${BASE_URL}delete-income/${id}`)
@@ -39,15 +42,16 @@ export const GlobalProvider = ({children}) => {
 
     //calculate expense
     const addExpense = async(expense) =>{
+       
         const response = await axios.post(`${BASE_URL}add-expense`, expense).catch((error) => {
-            setError(error.response.data.message)
+            setError(error)
         })
         getExpense()
     }
     const getExpense = async() =>{
-        const response = await axios.get(`${BASE_URL}get-expense`)
-        setExpenses(response.data)
-        console.log(response.data);
+        // const response = await axios.get(`${BASE_URL}get-expense`)
+        // setExpenses(response.data)
+        // console.log(response.data);
     }
     const deleteExpense = async(id) => {
         const res = await axios.delete(`${BASE_URL}delete-expense/${id}`)

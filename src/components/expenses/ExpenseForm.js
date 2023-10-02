@@ -5,8 +5,10 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { useGlobalContext } from '../../context/GlobalContext';
 import Button from '../Button/Button';
 import { plus } from '../../utils/Icons';
+import { useSelector } from "react-redux";
 
 function ExpenseForm() {
+    const user = useSelector(state => state.UserHolder)
     const {addExpense, error,setError} = useGlobalContext()
     const [inputState, setInputState] = useState({
         title: "",
@@ -14,9 +16,11 @@ function ExpenseForm() {
         date: "",
         category: "",
         description: "",
+        userId: user._id
     })
 
-    const {title,amount,date,category,description} = inputState;
+    const { title, amount, date, category, description} = inputState;
+    
     const handleInput = name => e => {
         setInputState({...inputState, [name]: e.target.value})
         setError('')

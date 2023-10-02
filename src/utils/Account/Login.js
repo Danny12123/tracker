@@ -28,7 +28,8 @@ const Login = () => {
                 dispatch(UserAction(res.data));
                 navigate('/')   
             } catch (error) {
-                setIsLoading(error)
+                
+                setError(error.message)
                 setIsLoading(false)
             }
         }

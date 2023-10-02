@@ -5,11 +5,19 @@ import { InnerLayout } from '../../styles/layout';
 import Form from '../form/Form';
 import IncomeItem from '../incomeitem/IncomeItem';
 import ExpenseForm from './ExpenseForm';
+import axios from 'axios';
+import { useSelector } from "react-redux";
 
 function Expenses() {
     const {addIncome, getExpense, expenses,deleteExpense, totalExpense, } = useGlobalContext()
 
+    // const user = useSelector(state => state.UserHolder)
     useEffect(() =>{
+        // const fetchData = () => {
+        //     const res = axios.get(`http://localhost:8080/api/v1/get-expense/${user._id}`);
+        //     console.log(res)
+        // }
+        // fetchData()
         getExpense()
     }, [])
   return (

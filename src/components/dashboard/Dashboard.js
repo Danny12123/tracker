@@ -1,6 +1,6 @@
 import Chart from '../chart/Chart'
 import { useGlobalContext } from '../../context/GlobalContext';
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { InnerLayout } from '../../styles/layout';
 import { dollar, income } from '../../utils/Icons';
@@ -8,14 +8,68 @@ import History from '../../history/History';
 import './style.css'
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import axios from 'axios';
+import { useSelector } from "react-redux";
 
 function Dashboard() {
-    const { totalExpense, incomes, expenses, totalIncome, totalBalance, transactionHistory, getIncome, getExpense, } = useGlobalContext()
-
+    const { incomes, expenses, transactionHistory, getIncome, getExpense, } = useGlobalContext()
+    const [expenseData, setExpenseData] = useState(null)
+    const [incomeData, setIncomeData] = useState(null)
+    // useEffect(() => {
+    //     getIncome()
+    //     // getExpense()
+    // }, [])
+    
+    const user = useSelector(state => state.UserHolder)
     useEffect(() => {
-        getIncome()
-        getExpense()
-    }, [])
+        const fetchData = async () => {
+            try {
+                const res = await axios.get(`http://localhost:8080/api/v1/get-expense/${user._id}`);
+                setExpenseData(res.data)
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        fetchData()
+        // getExpense()
+    }, [user])
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const res = await axios.get(`http://localhost:8080/api/v1/get-income/${user._id}`);
+                setIncomeData(res.data)
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        fetchData()
+        // getExpense()
+    }, [user])
+    const totalExpense1 = () => {
+        let totalExpense1 = 0;
+        expenseData?.forEach((expense) => {
+            totalExpense1 = totalExpense1 + expense.amount
+        })
+        return totalExpense1
+    }
+    const totalIncome = () => {
+        let totalIncome = 0;
+        incomeData?.forEach((income) => {
+            totalIncome = totalIncome + income.amount
+        })
+        return totalIncome
+    }
+    const totalBalance = () => {
+        return Math.max(0, totalIncome() - totalExpense1());
+    }
+
+    // const transactionHistory = () => {
+    //     const history = [...incomes, ...expenses]
+    //     history.sort((a, b) => {
+    //         return new Date(b.createdAt) - new Date(a.createdAt)
+    //     })
+    //     return history.slice(0, 3)
+    // }
     return (
         <div>
             <div id='dash_holder'>
@@ -37,7 +91,7 @@ function Dashboard() {
                                 <div className='expense'>
                                     <h2>Total Expense </h2>
                                     <p>
-                                        { dollar } { totalExpense() }
+                                        { dollar } { totalExpense1()  }
                                     </p>
                                 </div>
                                 <div className='balance'>

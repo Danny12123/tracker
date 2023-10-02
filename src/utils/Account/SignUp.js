@@ -21,10 +21,10 @@ const SignUp = () => {
         setError("Pleas all input are required");
     } else {
         try {
-            const data = new FormData();
-            const filename = images.name;
-            data.append("user_profile", images);
-            data.append("file.originalname", filename);
+            // const data = new FormData();
+            // const filename = images.name;
+            // data.append("user_profile", images);
+            // data.append("file.originalname", filename);
             // const imageURL = await axios.post("http://localhost:8080/api/v1/user_profile", data);
             
             const info = { username: name, email, password }

@@ -21,3 +21,64 @@
     height: inherit;
     border-radius: 50%;
 }
+
+.fr_head {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.fr_head h2 {
+    color: #001;
+    letter-spacing: 1px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.fr_head p {
+    color: gray;
+    font-weight: 400;
+    font-size: 15px;
+    text-align: center;
+}
+
+form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+form .form_inp_holder {
+    margin: 8px 0;
+}
+
+form label {
+    display: block;
+    font-size: 17px;
+    font-weight: 500;
+    color: gray;
+    margin-bottom: 5px;
+}
+.image-input {
+    width: 50%;
+    margin: 0 auto;
+}
+form input {
+    width: 100%;
+    outline: none;
+    border: 1px solid gray;
+    padding: 8px;
+    border-radius: 5px;
+}
+
+form button {
+    padding: 10px 50px;
+    outline: none;
+    border: none;
+    background-color: #001;
+    color: #fff;
+    border-radius: 10px;
+}
